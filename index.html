@@ -650,6 +650,12 @@
         </div>
         <div class="field-row">
           <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
             <label for="pickup">Pickup location</label>
             <input id="pickup" name="pickup" type="text" required>
           </div>
@@ -769,6 +775,7 @@
     const payload = {
       name: form.name.value,
       phone: form.phone.value,
+      email: form.email.value,
       pickup: form.pickup.value,
       dropoff: form.dropoff.value,
       date: form.date.value,
