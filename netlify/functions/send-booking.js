@@ -17,9 +17,9 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request body' }) };
   }
 
-  const { name, phone, email, pickup, dropoff, date, time, notes } = data;
+  const { name, phone, email, vehicle, pickup, dropoff, date, time, notes } = data;
 
-  if (!name || !phone || !email || !pickup || !dropoff || !date || !time) {
+  if (!name || !phone || !email || !vehicle || !pickup || !dropoff || !date || !time) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Missing required fields' }) };
   }
 
@@ -66,11 +66,12 @@ exports.handler = async (event) => {
 <tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; border-bottom:1px solid #1c2130;">NAME</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px solid #1c2130;">${esc(name)}</td></tr>
 <tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; border-bottom:1px solid #1c2130;">PHONE</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a; border-bottom:1px solid #1c2130;">${esc(phone)}</td></tr>
 <tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; border-bottom:1px solid #1c2130;">EMAIL</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px solid #1c2130;">${esc(email)}</td></tr>
-<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; border-bottom:1px solid #1c2130;">PICKUP</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a; border-bottom:1px solid #1c2130;">${esc(pickup)}</td></tr>
-<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; border-bottom:1px solid #1c2130;">DROP-OFF</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px solid #1c2130;">${esc(dropoff)}</td></tr>
-<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; border-bottom:1px solid #1c2130;">DATE</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a; border-bottom:1px solid #1c2130;">${esc(date)}</td></tr>
-<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; border-bottom:1px solid #1c2130;">TIME</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px solid #1c2130;">${esc(time)}</td></tr>
-<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; vertical-align:top;">NOTES</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a;">${esc(notes) || '&mdash;'}</td></tr>
+<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; border-bottom:1px solid #1c2130;">VEHICLE</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a; border-bottom:1px solid #1c2130;">${esc(vehicle)}</td></tr>
+<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; border-bottom:1px solid #1c2130;">PICKUP</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px solid #1c2130;">${esc(pickup)}</td></tr>
+<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; border-bottom:1px solid #1c2130;">DROP-OFF</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a; border-bottom:1px solid #1c2130;">${esc(dropoff)}</td></tr>
+<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; border-bottom:1px solid #1c2130;">DATE</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px solid #1c2130;">${esc(date)}</td></tr>
+<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; background-color:#12172a; border-bottom:1px solid #1c2130;">TIME</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; background-color:#12172a; border-bottom:1px solid #1c2130;">${esc(time)}</td></tr>
+<tr><td style="padding:14px 18px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#6b7488; vertical-align:top;">NOTES</td><td style="padding:14px 18px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right;">${esc(notes) || '&mdash;'}</td></tr>
 </table>
 </td>
 </tr>
@@ -110,6 +111,7 @@ exports.handler = async (event) => {
 <tr>
 <td style="padding:0 36px 8px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #262b3a; border-radius:4px; overflow:hidden;">
+<tr><td style="padding:16px 20px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#B08D57; border-bottom:1px dashed #262b3a;">VEHICLE</td><td style="padding:16px 20px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px dashed #262b3a;">${esc(vehicle)}</td></tr>
 <tr><td style="padding:16px 20px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#B08D57; border-bottom:1px dashed #262b3a;">PICKUP</td><td style="padding:16px 20px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px dashed #262b3a;">${esc(pickup)}</td></tr>
 <tr><td style="padding:16px 20px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#B08D57; border-bottom:1px dashed #262b3a;">DROP-OFF</td><td style="padding:16px 20px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px dashed #262b3a;">${esc(dropoff)}</td></tr>
 <tr><td style="padding:16px 20px; font-family:'Courier New', monospace; font-size:11px; letter-spacing:1px; color:#B08D57; border-bottom:1px dashed #262b3a;">DATE</td><td style="padding:16px 20px; font-family:Arial, sans-serif; font-size:14px; color:#EDEFF3; text-align:right; border-bottom:1px dashed #262b3a;">${esc(date)}</td></tr>
