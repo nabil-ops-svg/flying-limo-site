@@ -389,7 +389,7 @@
     display:block;
     margin-bottom:8px;
   }
-  input, textarea{
+  input, textarea, select{
     width:100%;
     background:var(--ink);
     border:1px solid var(--line);
@@ -399,7 +399,18 @@
     font-family:'Inter',sans-serif;
     font-size:0.92rem;
   }
-  input:focus, textarea:focus{border-color:var(--brass);}
+  select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M0 0L5 6L10 0Z' fill='%23C9CDD6'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    padding-right:34px;
+    cursor:pointer;
+  }
+  select option{background:var(--panel); color:var(--paper);}
+  select:invalid{color:var(--dusk);}
+  input:focus, textarea:focus, select:focus{border-color:var(--brass);}
   .form-note{
     font-size:0.8rem;
     color:var(--dusk);
@@ -653,6 +664,16 @@
             <label for="email">Email</label>
             <input id="email" name="email" type="email" required>
           </div>
+          <div>
+            <label for="vehicle">Vehicle</label>
+            <select id="vehicle" name="vehicle" required>
+              <option value="" disabled selected>Select a vehicle</option>
+              <option value="GMC Yukon">GMC Yukon</option>
+              <option value="Cadillac Escalade">Cadillac Escalade</option>
+              <option value="BMW 7 Series">BMW 7 Series</option>
+              <option value="Mercedes S580">Mercedes S580</option>
+            </select>
+          </div>
         </div>
         <div class="field-row">
           <div>
@@ -671,7 +692,9 @@
           </div>
           <div>
             <label for="time">Time</label>
-            <input id="time" name="time" type="time" required>
+            <select id="time" name="time" required>
+              <option value="" disabled selected>Select a time</option>
+            </select>
           </div>
         </div>
         <div>
@@ -761,6 +784,37 @@
     navToggle.setAttribute('aria-expanded', 'false');
   }));
 
+  // Restrict booking date to today only
+  const dateInput = document.getElementById('date');
+  if (dateInput) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+    dateInput.min = todayStr;
+    dateInput.max = todayStr;
+    dateInput.value = todayStr;
+  }
+
+  // Populate time dropdown in 30-minute increments, 12-hour format
+  const timeSelect = document.getElementById('time');
+  if (timeSelect) {
+    for (let h = 0; h < 24; h++) {
+      for (let m = 0; m < 60; m += 30) {
+        const hour12 = h % 12 === 0 ? 12 : h % 12;
+        const ampm = h < 12 ? 'AM' : 'PM';
+        const mm = String(m).padStart(2, '0');
+        const label = `${hour12}:${mm} ${ampm}`;
+        const value = `${String(h).padStart(2, '0')}:${mm}`;
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = label;
+        timeSelect.appendChild(opt);
+      }
+    }
+  }
+
   const form = document.getElementById('bookingForm');
   const success = document.getElementById('formSuccess');
   const submitBtn = form.querySelector('button[type="submit"]');
@@ -776,6 +830,7 @@
       name: form.name.value,
       phone: form.phone.value,
       email: form.email.value,
+      vehicle: form.vehicle.value,
       pickup: form.pickup.value,
       dropoff: form.dropoff.value,
       date: form.date.value,
