@@ -160,23 +160,26 @@
     z-index:2;
     display:block;
   }
-  .hero-text{max-width:620px;}
-  .hero .eyebrow{color:var(--brass-bright);}
+  .hero-text{max-width:700px;}
+  .hero .eyebrow{color:var(--brass-bright); margin-bottom:22px;}
   .hero .eyebrow::before{background:var(--brass-bright);}
   .hero h1{
     color:#fff;
-    font-size:clamp(2.3rem, 4.4vw, 3.5rem);
-    line-height:1.08;
-    margin:18px 0 20px;
+    font-size:clamp(2.1rem, 3.8vw, 3.15rem);
+    line-height:1.22;
+    letter-spacing:-0.01em;
+    margin:0 0 28px;
   }
   .hero h1 em{ font-style:italic; color:var(--brass-bright); }
   .hero p.lede{
-    font-size:1.08rem;
+    font-size:1.14rem;
+    line-height:1.65;
     color:rgba(255,255,255,0.82);
-    max-width:480px;
-    margin-bottom:30px;
+    max-width:490px;
+    margin-bottom:38px;
   }
-  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:30px;}
+  .hero-ctas .btn{padding:14px 26px; font-size:0.9rem;}
   .hero-ctas .btn-ghost{border-color:rgba(255,255,255,0.4); color:#fff;}
   .hero-ctas .btn-ghost:hover{border-color:var(--brass-bright); color:var(--brass-bright);}
   .hero-phone{
@@ -185,11 +188,11 @@
     color:#fff;
   }
   .trust-line{
-    margin-top:26px;
+    margin-top:8px;
     font-family:'JetBrains Mono',monospace;
     font-size:0.72rem;
-    letter-spacing:0.06em;
-    color:rgba(255,255,255,0.65);
+    letter-spacing:0.1em;
+    color:rgba(255,255,255,0.6);
   }
 
   /* ---------- Steps ---------- */
